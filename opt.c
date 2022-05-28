@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define EMPTY_FRAME -1
+
 int* generate_ref_arr(size_t sz, size_t max_page);
 void opt(int* ref_arr, size_t ref_arr_sz, size_t frame_sz);
 
@@ -31,7 +33,7 @@ void opt(int* ref_arr, size_t ref_arr_sz, size_t frame_sz) {
     
     // Initializing frames
     int* frames = (int*) malloc(sizeof(int) * frame_sz);
-    for (i=0; i<frame_sz; i++) frames[i] = -1;
+    for (i=0; i<frame_sz; i++) frames[i] = EMPTY_FRAME;
 
     // Iterating reference string
     for (i=0; i<ref_arr_sz; i++) {
@@ -39,10 +41,10 @@ void opt(int* ref_arr, size_t ref_arr_sz, size_t frame_sz) {
 
         // Miss (page fault occurred)
         if (is_fault == -1) {
-            int empty_idx = _contains(frames, frame_sz, -1);
+            int empty_idx = _contains(frames, frame_sz, EMPTY_FRAME);
 
             // Checking for empty frame slots
-            if (empty_idx != -1) {
+            if (empty_idx != EMPTY_FRAME) {
                 target = empty_idx;
             }
             else {

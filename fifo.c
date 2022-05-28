@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define EMPTY_FRAME -1
+
 int* generate_ref_arr(size_t sz, size_t max_page);
 void fifo(int* ref_arr, size_t ref_arr_sz, size_t frame_sz);
 
@@ -29,7 +31,7 @@ void fifo(int* ref_arr, size_t ref_arr_sz, size_t frame_sz) {
     
     // Initializing frames
     int* frames = (int*) malloc(sizeof(int) * frame_sz);
-    for (i=0; i<frame_sz; i++) frames[i] = -1;
+    for (i=0; i<frame_sz; i++) frames[i] = EMPTY_FRAME;
 
     // Iterating reference string
     for (i=0; i<ref_arr_sz; i++) {
@@ -45,7 +47,7 @@ void fifo(int* ref_arr, size_t ref_arr_sz, size_t frame_sz) {
         // Printing current states of frames
         printf("%d | ", ref_arr[i]);
         for(j=0; j<frame_sz; j++) {
-            if (frames[j] == -1) printf(". ");
+            if (frames[j] == EMPTY_FRAME) printf(". ");
             else printf("%d ", frames[j]);
         }
         if (is_fault == -1) printf("(fault)");
