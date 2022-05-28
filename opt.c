@@ -3,7 +3,7 @@
 
 #define EMPTY_FRAME -1
 
-int* generate_ref_arr(size_t sz, size_t max_page);
+int* generate_ref_arr(size_t sz, size_t page_max);
 void opt(int* ref_arr, size_t ref_arr_sz, size_t frame_sz);
 
 int _contains(int* arr, size_t sz, int target);
@@ -17,7 +17,7 @@ int main(void) {
     return 0;
 }
 
-int* generate_ref_arr(size_t sz, size_t max_page) {
+int* generate_ref_arr(size_t sz, size_t pagE_max) {
     int* ref_arr = (int*) malloc(sizeof(int) * sz);
     
     // TODO ::
