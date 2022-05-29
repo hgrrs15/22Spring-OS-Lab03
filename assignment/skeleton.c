@@ -2,19 +2,20 @@
 #include <stdlib.h>
 
 int* generate_ref_arr(size_t sz, size_t page_max);
-void function(int* ref_arr, size_t ref_arr_sz, size_t frame_sz);
+int lru(int* ref_arr, size_t ref_arr_sz, size_t frame_sz);
 
 // Driver code
-int main(void) {
-    // #1
-    int ref[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
-    int sz = sizeof(ref) / sizeof(int);
-    function(ref, sz, 3);
+//  Usage: ./program {ref_arr_size} {page_max} {frame_size}
+int main(int argc, char** argv) {
+    if (argc < 4) return -1;
+    
+    int ref_arr_sz = atoi(argv[1]);
+    int page_max = atoi(argv[2]);
+    int frame_sz = atoi(argv[3]);
 
-    // #2
-    int sz = 50;
-    int* ref = generate_ref_arr(sz, 9);
-    function(ref, sz, 5);
+    int* ref = generate_ref_arr(ref_arr_sz, page_max);
+    int page_faults = function(ref, ref_arr_sz, frame_sz);
+    printf("%d\n", page_faults);
     free(ref);
 
     return 0;
@@ -23,13 +24,12 @@ int main(void) {
 int* generate_ref_arr(size_t sz, size_t page_max) {
     int* ref_arr = (int*) malloc(sizeof(int) * sz);
     
-    // TODO ::
-    //   Generate Refernece String
+    // TODO :: Generate Random Refernece String
 
     return ref_arr;
 }
 
-void function(int* ref_arr, size_t ref_arr_sz, size_t frame_sz) {
+int lru(int* ref_arr, size_t ref_arr_sz, size_t frame_sz) {
     int i, j;
     int page_faults = 0;
     
@@ -37,6 +37,8 @@ void function(int* ref_arr, size_t ref_arr_sz, size_t frame_sz) {
     int* frames = (int*) malloc(sizeof(int) * frame_sz);
     for (i=0; i<frame_sz; i++) frames[i] = -1;
 
-    // TODO ::
-    //   
+    // TODO
+
+    return page_faults;
 }
+
