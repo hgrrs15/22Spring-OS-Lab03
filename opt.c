@@ -17,7 +17,7 @@ int main(void) {
     return 0;
 }
 
-int* generate_ref_arr(size_t sz, size_t pagE_max) {
+int* generate_ref_arr(size_t sz, size_t page_max) {
     int* ref_arr = (int*) malloc(sizeof(int) * sz);
     
     // TODO ::
