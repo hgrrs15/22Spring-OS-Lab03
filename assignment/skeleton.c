@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     int frame_sz = atoi(argv[3]);
 
     int* ref = generate_ref_arr(ref_arr_sz, page_max);
-    int page_faults = function(ref, ref_arr_sz, frame_sz);
+    int page_faults = lru(ref, ref_arr_sz, frame_sz);
     printf("%d\n", page_faults);
     free(ref);
 
