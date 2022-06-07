@@ -10,19 +10,24 @@ int _contains(int* arr, size_t sz, int target);
 
 // Driver code
 int main(void) {
-    int ref[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
-    int sz = sizeof(ref) / sizeof(int);
-    fifo(ref, sz, 4);
+   
+   int* ref= generate_ref_arr(20, 10);
+   int sz = sizeof(&ref) / sizeof(int);
+
+  fifo(ref, sz, 4);
     return 0;
 }
 
 int* generate_ref_arr(size_t sz, size_t page_max) {
     int* ref_arr = (int*) malloc(sizeof(int) * sz);
-    
     // TODO ::
-    //   Generate Refernece String
+    //  Generate Refernece String
 
-    return ref_arr;
+    for (size_t i = 0; i < sz; i++) {
+        ref_arr[i] = (rand() % page_max);
+    }  
+  return ref_arr;
+   
 }
 
 void fifo(int* ref_arr, size_t ref_arr_sz, size_t frame_sz) {

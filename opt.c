@@ -11,8 +11,9 @@ int _get_distance(int* ref_arr, size_t sz, int curr_idx, int target);
 
 // Driver code
 int main(void) {
-    int ref[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
-    int sz = sizeof(ref) / sizeof(int);
+    //int ref[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+    int* ref = generate_ref_arr(20, 10);
+    int sz = sizeof(&ref) / sizeof(int);
     opt(ref, sz, 4);
     return 0;
 }
@@ -22,7 +23,9 @@ int* generate_ref_arr(size_t sz, size_t page_max) {
     
     // TODO ::
     //   Generate Refernece String
-
+    for (size_t i = 0; i < sz; i++) {
+        ref_arr[i] = (rand() % page_max);
+    }
     return ref_arr;
 }
 
