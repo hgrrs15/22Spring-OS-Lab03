@@ -20,9 +20,9 @@ int main(int argc, char** argv) {
     int page_max = atoi(argv[2]);
     int frame_sz = atoi(argv[3]);
 
-    int ref[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
-   // int* ref = generate_ref_arr(ref_arr_sz, page_max);
-    int sz = sizeof(ref) / sizeof(int);
+    //int ref[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+    int* ref = generate_ref_arr(ref_arr_sz, page_max);
+    int sz = ref_arr_sz;
     int page_faults = lru(ref, sz, frame_sz);
     printf("%d\n", page_faults);
 
@@ -35,7 +35,8 @@ int* generate_ref_arr(size_t sz, size_t page_max) {
     // TODO ::
     //   Generate Refernece String
      for (size_t i = 0; i < sz; i++) {
-        ref_arr[i] = (rand() % page_max);
+        ref_arr[i] = (rand() % page_max)+1;
+        printf("%d ", ref_arr[i]);
       }
   
     return ref_arr;
